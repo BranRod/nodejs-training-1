@@ -1,6 +1,7 @@
 const Joi = require('joi');
 
 var dataJson = [];
+var validation = false;
 var isMale = function(j,i){if(j.results[i].gender === "male"){return true;}else{return false;}};
 
 var genJson = function(j){
@@ -17,23 +18,27 @@ var genJson = function(j){
      let password_length = j.results[i].login.password.length;
      var account = {"first_name":first_name,"last_name":last_name,"dob_ISO":dob_ISO,"is_male":is_male,"avatar":avatar,"username":username,"password_length":password_length};
      dataJson.push(account);
-     console.log(dataJson);
-     const schema = Joi.object().keys({
-         first_name: Joi.string(),
-         last_name: Joi.string(),
-         dob_ISO: Joi.string(),
-         is_male: Joi.boolean(),
-         avatar: Joi.string(),
-         username: Joi.string(),
-         password_length: Joi.number()
-     });
-     const services = Joi.array().items(schema);
-     Joi.validate(dataJson, services, function (err, value) {
-       console.log(err);
-      //  console.log(value);
-     })
      
-  }}};
+  };
+  const schema = Joi.object().keys({
+      first_name: Joi.string(),
+      last_name: Joi.string(),
+      dob_ISO: Joi.string(),
+      is_male: Joi.boolean(),
+      avatar: Joi.string(),
+      username: Joi.string(),
+      password_length: Joi.number()
+  });
+  const services = Joi.array().items(schema);
+  Joi.validate(dataJson, services, function (err, value) {
+    if (err){
+    console.log(err.details[0].message);
+  }
+  else {console.log(value);}
+  });
+
+}};
+
 
 
 module.exports = genJson;

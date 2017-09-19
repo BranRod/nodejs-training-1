@@ -7,8 +7,6 @@ const pullData = function(){
     }).catch(function(error){
       console.log("error: ", error);
     });
-
-    console.log('test');
 };
 
 module.exports = pullData;
