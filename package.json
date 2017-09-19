@@ -1,0 +1,31 @@
+{
+  "name": "nodejs-training-1",
+  "version": "1.0.0",
+  "description": "In this exercise you will build a NodeJS program which pulls JSON data from a 3rd party API (https://randomuser.me), transforms it into a certain schema, and returns the result for consumption (hypothetically by a UI layer).",
+  "main": "index.js",
+  "dependencies": {
+    "eslint": "^4.7.0",
+    "joi": "^11.0.1",
+    "joi-json": "^2.0.1",
+    "node-fetch": "^1.7.3"
+  },
+  "devDependencies": {
+    "lab": "^14.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wbell/nodejs-training-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wbell/nodejs-training-1/issues"
+  },
+  "homepage": "https://github.com/wbell/nodejs-training-1#readme",
+  "directories": {
+    "test": "test"
+  }
+}
