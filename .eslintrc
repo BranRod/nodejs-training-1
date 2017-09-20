@@ -1,15 +1,14 @@
 {
-  "max-len": [
-    2,
-    80,
-    4, 
-    {
-      "ignoreComments": true,
-      "ignoreUrls": true,
-      "ignorePattern": "^\\s*var\\s.+=\\s*require\\s*\\("
-    }
-  ],
   "rules": {
+    "max-len": [
+      2,
+      80,
+      4, {
+        "ignoreComments": true,
+        "ignoreUrls": true,
+        "ignorePattern": "^\\s*var\\s.+=\\s*require\\s*\\("
+      }
+    ],
     "strict": [
       2,
       "global"

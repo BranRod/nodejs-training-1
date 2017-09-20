@@ -6,19 +6,25 @@ var isMale = function(j,i){if(j.results[i].gender === "male"){return true;}else{
 
 var genJson = function(j){
   if(j){
+    if(j.results){
    for (var i = 0; i < j.results.length; i++){
-     let first_name = j.results[i].name.first.toString();
-     first_name = (first_name.charAt(0).toUpperCase()+first_name.slice(1));
-     let last_name = j.results[i].name.last.toString();
-     last_name = (last_name.charAt(0).toUpperCase()+last_name.slice(1));
-     let dob_ISO = j.results[i].dob;
-     let is_male = isMale(j,i);
-     let avatar = j.results[i].picture.thumbnail;
-     let username = j.results[i].login.username;
-     let password_length = j.results[i].login.password.length;
-     var account = {"first_name":first_name,"last_name":last_name,"dob_ISO":dob_ISO,"is_male":is_male,"avatar":avatar,"username":username,"password_length":password_length};
+     let account = {
+       first_name:function(){
+         let first_name = j.results[i].name.first.toString();
+         return first_name.charAt(0).toUpperCase()+first_name.slice(1);
+       }(),
+       last_name:function(){
+         let last_name = j.results[i].name.last.toString();
+         return last_name.charAt(0).toUpperCase()+last_name.slice(1);
+       }(),
+       dob_ISO:j.results[i].dob,
+       is_male:isMale(j,i),
+       avatar:j.results[i].picture.thumbnail,
+       username:j.results[i].login.username,
+       password_length:j.results[i].login.password.length
+     };
      dataJson.push(account);
-     
+
   };
   const schema = Joi.object().keys({
       first_name: Joi.string(),
@@ -37,8 +43,19 @@ var genJson = function(j){
   else {console.log(value);}
   });
 
+}
+else{
+  console.log("no json results");
+}}
+else{
+  console.log('no json object from randomuser')
 }};
 
 
 
 module.exports = genJson;
+
+
+//turn the json results into a method...check
+//add an error for if there's no j
+//if j.results exits
