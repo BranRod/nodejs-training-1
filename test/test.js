@@ -2,18 +2,27 @@
 const pullData = require('../pullData.js');
 const Lab = require('lab');
 const lab = exports.lab = Lab.script();
+const proxyquire =  require('proxyquire');
+var assert = require('assert');
 
-//  const { expect, experiment, it } = exports.lab = require('lab').script();
-// lab.test('returns true when 1 + 1 equals 2', (done) => {
-//     Lab.expect(1 + 1).to.equal(2);
-//     done();
-// });
-
+//  test the pulldata method to check if a value is returned
 lab.test('test pull data result', () => {
   return pullData()
     .then((aValue) => {
-      Lab.expect(aValue.results.length);}
+      Lab.expect(aValue.results.length).to.equal(3);}
     );});
 
 
-//Test that pulldata returns good data or the correct error
+//  Test the fetch error handler
+var fetch = proxyquire('../pullData', {
+  'node-fetch': function () {
+    process.nextTick(function () {
+      return new Promise(function() {
+        return ({'name':'test'});
+      });
+    });
+  }});
+
+fetch(function (err, res) {
+  assert(res.statusCode, 200);
+});
