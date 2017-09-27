@@ -7,7 +7,7 @@ let pullData = proxyquire('../pullData', {
   'node-fetch': function () {
     return new Promise(function(resolve){
       process.nextTick(function () {
-        console.error('log 2')
+        console.error('log 2');
         return resolve({
           'results':[{
             'name':'test'
@@ -23,6 +23,6 @@ lab.test('test pull data result', () => {
   return pullData()
     .then((aValue) => {
       console.log(aValue);
-      //Lab.expect(aValue);
+      Lab.expect(aValue);
     }
     );});

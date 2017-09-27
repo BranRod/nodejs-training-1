@@ -16,7 +16,7 @@ const pullData = function(){
   return fetch('https://randomuser.me/api/?results='+numResults).then(res => {
     return res.json();
   }).catch(function(error){
-    console.log("error: ", error);
+    console.log('error message: ', error.message);
     return error;
   });
 };
